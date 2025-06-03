@@ -227,7 +227,7 @@ export const App = () => {
             <SClear gameClear={gameClear}>
               <SClearBox>
                 <SClearBoxTtl>CLEAR</SClearBoxTtl>
-                <SClearBoxTime>タイム : <span>{timeState.time.toFixed(2)}秒</span></SClearBoxTime>
+                <SClearBoxTime>タイム : <span className='time'>{timeState.time.toFixed(2)}<span className='unit'>秒</span></span></SClearBoxTime>
                 <SClearBoxDeco01><img src="/images/game/deco/deco_01.png" alt="" /></SClearBoxDeco01>
                 <SClearBoxLevel>{level.ja}</SClearBoxLevel>
                 <SbuttonWrap>
@@ -256,6 +256,9 @@ const GlobalStyle = createGlobalStyle`
   body {
     font-family: "游ゴシック体", YuGothic, "游ゴシック Medium", "Yu Gothic Medium", "游ゴシック", "Yu Gothic", sans-serif;
     font-size: 16px;
+    color: #311e08;
+  }
+  button, select {
     color: #311e08;
   }
 `;
@@ -436,6 +439,7 @@ const SelectWrapper = styled.div`
 `;
 
 const SSelectLevel = styled.select`
+  color: #311e08;
   cursor: pointer;
   font-size: 3.195rem;
   font-weight: 700;
@@ -552,6 +556,7 @@ const SCardBack = styled.li<TCardBack>`
     width: 32%;
   }
   &::after {
+    backface-visibility: hidden;
     content: '';
     display: block;
     width: 64px;
@@ -656,9 +661,13 @@ const SClearBoxTime = styled.div`
   @media (max-width: 979px) {
     font-size: 2rem;
   }
-  span {
+  .time {
     font-size: 140%;
     color: #de315f;
+    .unit {
+      font-size: 60%;
+      margin-left: 3px;
+    }
   }
 `;
 
